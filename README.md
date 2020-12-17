@@ -44,3 +44,5 @@ ___
 Using the Visual Studio Code with the Rest Client Plugin (https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
 After installed, just open the [request.rest](./request.rest) file and test each request.
+
+Testing endpoint: a93914d0e6c34486795331b528002f93-1662806188.us-east-2.elb.amazonaws.com
