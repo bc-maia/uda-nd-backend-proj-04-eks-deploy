@@ -25,7 +25,6 @@ phases:
         - sed -i 's@JWT_SECRET_VALUE@'"$JWT_SECRET"'@' simple_jwt_api.yml
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
-        - echo `s@CONTAINER_IMAGE@`
   build:
     commands:
       - echo $REPOSITORY_URI:$TAG
