@@ -21,11 +21,10 @@ phases:
   pre_build:
       commands:
         - echo 'running tests'
-        - apt-get install build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev -y
-        - apt-get install python3-pip python3-dev -y
-        - python3 -m pip install --upgrade pip
-        - python3 -m pip install -r requirements.txt
-        - python3 -m pytest test_app.py
+        - echo `python3 --version`
+        # - python3 -m pip install --upgrade pip
+        # - python3 -m pip install -r requirements.txt
+        # - python3 -m pytest test_app.py
         - echo 'running pre_build'
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:latest"'@' simple_jwt_api.yml
