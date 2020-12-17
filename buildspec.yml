@@ -21,6 +21,7 @@ phases:
   pre_build:
       commands:
         - echo 'running tests'
+        - echo `python --version`
         - pip install -r requirements.txt
         - python -m pytest test_main.py
         - echo 'running pre_build'
