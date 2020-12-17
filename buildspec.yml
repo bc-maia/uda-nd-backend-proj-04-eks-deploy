@@ -26,6 +26,7 @@ phases:
         - apt-get install python3.8
         - rm /usr/bin/python3
         - ln -s python3.8 /usr/bin/python3
+        - echo `python3 --version`
         # - python3 -m pip install --upgrade pip
         # - python3 -m pip install -r requirements.txt
         # - python3 -m pytest test_app.py
