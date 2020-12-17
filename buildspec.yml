@@ -21,18 +21,18 @@ phases:
   pre_build:
       commands:
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
-        - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' simple_jwt_api.yml
+        - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:latest"'@' simple_jwt_api.yml
         - sed -i 's@JWT_SECRET_VALUE@'"$JWT_SECRET"'@' simple_jwt_api.yml
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
   build:
     commands:
-      - echo $REPOSITORY_URI:$TAG
-      - docker build --tag $REPOSITORY_URI:$TAG .
+      - echo $REPOSITORY_URI:latest
+      - docker build --tag $REPOSITORY_URI:latest .
 
   post_build:
     commands:
-      - docker push $REPOSITORY_URI:$TAG
+      - docker push $REPOSITORY_URI:latest
       - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
       - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
       - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
@@ -42,7 +42,7 @@ phases:
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --no-verify-ssl
       # - pwd && ls -lar
       # - kubectl apply -f simple_jwt_api.yml   # must be logged in
-      - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
+      - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:latest > build.json
 
 artifacts:
   files: build.json
