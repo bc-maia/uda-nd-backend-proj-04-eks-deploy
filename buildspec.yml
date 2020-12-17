@@ -40,7 +40,7 @@ phases:
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - echo '$EKS_CLUSTER_NAME' && echo $EKS_CLUSTER_NAME
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --no-verify-ssl
-      # - pwd && ls -lar
+      - pwd && ls -lar
       # - kubectl apply -f simple_jwt_api.yml   # must be logged in
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
 
