@@ -6,9 +6,9 @@ In this project you will containerize and deploy a Flask API to a Kubernetes clu
 
 The Flask app that will be used for this project consists of a simple API with three endpoints:
 
-- `GET '/'`: This is a simple health check, which returns the response 'Healthy'. 
+- `GET '/'`: This is a simple health check, which returns the response 'Healthy'.
 - `POST '/auth'`: This takes a email and password as json arguments and returns a JWT based on a custom secret.
-- `GET '/contents'`: This requires a valid JWT, and returns the un-encrpyted contents of that token. 
+- `GET '/contents'`: This requires a valid JWT, and returns the un-encrpyted contents of that token.
 
 The app relies on a secret set as the environment variable `JWT_SECRET` to produce a JWT. The built-in Flask server is adequate for local development, but not production, so you will be using the production-ready [Gunicorn](https://gunicorn.org/) server when deploying the app.
 
@@ -23,7 +23,7 @@ The app relies on a secret set as the environment variable `JWT_SECRET` to produ
     - For Mac users, if you have no previous Docker Toolbox installation, you can install Docker Desktop for Mac. If you already have a Docker Toolbox installation, please read [this](https://docs.docker.com/docker-for-mac/docker-toolbox/) before installing.
  - AWS Account
      - You can create an AWS account by signing up [here](https://aws.amazon.com/#).
-     
+
 ## Project Steps
 
 Completing the project involves several steps:
@@ -36,3 +36,11 @@ Completing the project involves several steps:
 6. Create a CodeBuild stage which will build, test, and deploy your code
 
 For more detail about each of these steps, see the project lesson [here](https://classroom.udacity.com/nanodegrees/nd004/parts/1d842ebf-5b10-4749-9e5e-ef28fe98f173/modules/ac13842f-c841-4c1a-b284-b47899f4613d/lessons/becb2dac-c108-4143-8f6c-11b30413e28d/concepts/092cdb35-28f7-4145-b6e6-6278b8dd7527).
+
+___
+___
+## Testing The Flask API
+
+Using the Visual Studio Code with the Rest Client Plugin (https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+
+After installed, just open the [request.rest](./request.rest) file and test each request.

@@ -1,0 +1,21 @@
+# route /: returns API status response
+GET / HTTP/1.1
+Host: a93914d0e6c34486795331b528002f93-1662806188.us-east-2.elb.amazonaws.com
+
+####
+# route /auth: returns jwt token
+POST /auth HTTP/1.1
+Host: a93914d0e6c34486795331b528002f93-1662806188.us-east-2.elb.amazonaws.com
+Content-Type: application/json
+Content-Length: 60
+
+{
+    "email":"user@email.com",
+    "password": "Password"
+}
+
+####
+# route /content: using previous response JWT Token as Authorization Bearer
+GET /contents HTTP/1.1
+Host: a93914d0e6c34486795331b528002f93-1662806188.us-east-2.elb.amazonaws.com
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDkzOTE0NDQsIm5iZiI6MTYwODE4MTg0NCwiZW1haWwiOiJ1c2VyQGVtYWlsLmNvbSJ9.av2FtpkXTFBztyMWmB9R6MP5Z1GmuJmvrH1oTpJj1jU
