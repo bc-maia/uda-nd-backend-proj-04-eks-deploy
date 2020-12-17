@@ -5,7 +5,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.7
+      python: 3.8
     commands:
       - echo 'about to call dockerd'
       - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
@@ -21,6 +21,7 @@ phases:
   pre_build:
       commands:
         - echo 'running tests'
+        - pip3 install --upgrade pip
         - pip3 install -r requirements.txt
         - python3 -m pytest test_main.py
         - echo 'running pre_build'
