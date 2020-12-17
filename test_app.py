@@ -28,6 +28,13 @@ def test_health(client):
     assert response.json == "Healthy"
 
 
+# FAILING TEST CASE
+# def test_fail_health(client):
+#     response = client.get("/")
+#     assert response.status_code == 200
+#     assert response.json == "Offline"
+
+
 def test_auth(client):
     body = {"email": EMAIL, "password": PASSWORD}
     response = client.post(
