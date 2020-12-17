@@ -22,6 +22,7 @@ phases:
       commands:
         - echo 'running tests'
         - echo `python --version`
+        - echo `lsb_release -a`
         - pip install -r requirements.txt
         - python -m pytest test_main.py
         - echo 'running pre_build'
